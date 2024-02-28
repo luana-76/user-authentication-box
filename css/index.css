@@ -1,0 +1,101 @@
+#lightingButton{
+
+    cursor: pointer;
+    left: 5vw;
+    position: absolute;
+    top: 1vw;
+
+}
+
+/* Caixa de login */
+
+#topBox{
+
+    border: 2px solid #11116e;
+    display: flex;
+    justify-content: space-evenly;
+    height: 33vw;
+    width: 66vw;
+
+}
+
+.standard{
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+}
+
+/* Estilização da caixa um */
+
+#internalBoxOne{
+
+    background: #d9d9d9;
+    height: 100%;
+    width: 100%;
+
+}
+
+#internalBoxOne:hover{background: #c3c2c2;}
+
+#internalBoxOne p{text-align: center;}
+
+span{margin-bottom: 1vw;}
+
+/* Estilização da caixa dois */
+
+#internalBoxTwo{background: #fff;}
+
+#socialMediaButtons{margin: 1vw 0;}
+#socialMediaButtons button{
+
+    background: transparent;
+    border: 2px solid #11116e;
+    border-radius: 20px;
+    height: 3vw;
+    padding: 0;
+    width: 3vw;
+    
+}
+
+/* form */
+
+/* Estilização da caixa de input */
+
+.inputBox{
+
+    background: #d9d9d9;
+    border-radius: 23px;
+    margin-bottom: 5px;
+    padding: 0.7vw 1vw;
+
+}
+
+.inputBox img{vertical-align: middle;}
+
+.inputBox input{
+
+    background: transparent;
+    border: none;
+    height: 2vw;
+    outline: none;
+    width: 20vw;
+
+}
+
+input[type='submit']{margin-top: 1vw;}
+
+/* Eventos css */
+
+#internalBoxOne button:hover,
+input[type='submit']:hover{
+
+    transition: background 1s;
+    background: #1b1bdf;
+    border: 2px solid #fff;
+
+}

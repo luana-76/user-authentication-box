@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../Users/luana/OneDrive/Documentos/MeusProjetos/Proprios/cadastro"
+		},
+		{
+			"path": "../cursoPhp"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "cadastro"
+	}
+}

@@ -1,0 +1,12 @@
+@media screen and (max-width: 841px){
+
+    #topBox{
+
+        flex-direction: column;
+        height: 71vw;
+
+    }
+
+    .inputBox input {width: 42vw;}
+    
+}
