@@ -26,7 +26,7 @@
             <div id="internalBoxOne" class="standard">
 
                 <strong>Welcome Back!</strong>
-                <p>To keep connected with us</br>
+                <p>To keep connected with us<br/>
                 please login with your personal info</p>
 
                 <button value='sign in'>SIGN IN</button>
@@ -47,19 +47,25 @@
 
                     <button>
 
-                        <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/000000/facebook-f.png" alt="facebook-f"/>
+                        <a href=''>
+                            <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/000000/facebook-f.png" alt="facebook-f"/>
+                        </a>
 
                     </button>
 
                     <button>
 
-                        <img width="20" height="20" src="https://img.icons8.com/windows/32/000000/google-plus.png" alt="google-plus"/>
+                        <a href=''>
+                            <img width="20" height="20" src="https://img.icons8.com/windows/32/000000/google-plus.png" alt="google-plus"/>
+                        </a>
 
                     </button>
 
                     <button>
 
-                        <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2--v1.png" alt="linkedin-2--v1"/>
+                        <a href=''>
+                            <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2--v1.png" alt="linkedin-2--v1"/>
+                        </a>
 
                     </button>
 
@@ -74,10 +80,12 @@
     
                         <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/000000/user.png" alt="user"/>
 
-                        <input type='text' name='nome' required placeholder="Name"/>
+                        <input type='text' name='name' pattern="/^[A-Za-z\s]+$/" placeholder="Name"/>
     
                     </div>
+                    <span class='error' id='nameError'></span><!-- Exibirá erros aqui-->
                     
+                    <!-- Caixa de estilização do input-->
                     <div class='inputBox'>
     
                         <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/000000/new-post.png" alt="new-post"/>
@@ -85,16 +93,19 @@
                         <input type='email' name='email' required pattern='^[a-zA-Z0-9_]+@[a-zA-Z]+\.[a-zA-Z]{2,}$' placeholder="Email"/>
     
                     </div>
-    
+                    <span class='error' id='emailErro'></span><!-- Exibirá erros aqui-->
+                    
+                    <!-- Caixa de estilização do input-->
                     <div class='inputBox'>
     
                         <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/000000/lock.png" alt="lock"/>
 
-                        <input type='password' name='senha' required placeholder="Password"/>
+                        <input type='password' pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$' name='password' required placeholder="Password"/>
     
                     </div>
+                    <span class='error' id='passwordErro'></span><!-- Exibirá erros aqui-->
 
-                    <input type="submit" disabled value="ENVIAR"/>
+                    <input type="submit" value="ENVIAR"/>
         
                 </form>
 

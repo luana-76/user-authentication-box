@@ -12,68 +12,131 @@ class Acoes{
         this.changingForm();
         this.controleForm();
 
+        this.controleDoBotaoEnviar()
+
+        this.erroEmail = document.querySelector('#emailErro');
+        this.erroNome = document.querySelector('#nameError')
+        this.erroSenha = document.querySelector('#passwordErro')
+
+    }
+
+    controleDoBotaoEnviar(){
+
+        setInterval(e=>{
+
+            let input = document.querySelectorAll('input');
+            
+            input.forEach(element => {
+
+                input[3].addEventListener('click', e=>{
+
+                    if(element.value == '' && element.type != 'submit'){
+
+                        element.parentElement.style.border = '2px solid red';
+                    
+                    }
+
+                })
+
+            });
+
+
+        }, 1000)
+
+
     }
 
     controleForm(){
 
-        this.name = document.querySelector('input[name="nome"]');
-        this.email = document.querySelector('input[name="email"]');
-        this.password = document.querySelector('input[name="senha"]');
-
-        let input = document.querySelectorAll('input');
+        //Tirando o input do botão
+        let input = [...document.querySelectorAll('input')]
+        input.pop()
 
         //Validando se ta em foco
         input.forEach(element => {
 
+            //Quando estiver em foco, os inputs vão ficar nessa estilização
             element.addEventListener("focus", e=>{
 
-                if(this.name.parentElement.style.border != 'red'){
-    
-                        element.parentElement.style.border = 'none';
-                        element.parentElement.style.borderBottom = '2px solid blue';
-    
-                };
-    
+                element.parentElement.style.border = 'none';
+                element.parentElement.style.borderBottom = '2px solid blue';
+
             })
 
             //Quando o foco sair
+
             element.addEventListener("blur", e=>{
 
-                console.log(element)
-                if(element.value.length == 0 || typeof element.value !== "string" || element.value.length > 50){
+                //Tratamento do email
+                switch(element.name){
 
-                    element.parentElement.style.border = '2px solid red';
+                    case 'name':
+
+                        if(element.value.length == 0){
+
+                            this.tratandoErro('Preencha o campo.', this.erroNome, element, true)
+
+                        }else{
+                            
+                            this.tratandoErro(undefined, this.erroNome, element, false)
+
+                        };
+                        break;
+
+                    case 'email':
+
+                        if(element.value.length > 50){
+
+                            this.tratandoErro('O maixmo de caractere é 50.', this.erroEmail, element, true)
+
+                        }else if(element.value.length == 0){
+
+                            this.tratandoErro('Preencha o campo.', this.erroEmail, element, true)
+
+                        }else{
+                            
+                            this.tratandoErro(undefined, this.erroEmail, element, false)
+                        
+                        }
+                        break;
                     
-                }else{
-    
-                    element.parentElement.style.border = 'none';
-    
-                };
+                    case 'password':
 
-                if(this.email.value.length > 100 || this.email.value.length == 0){
+                        if(element.value.length == 0 || element.value.length < 8){
 
-                    element.parentElement.style.border = '2px solid red';
+                            this.tratandoErro('Preencha o campo, no minimo 8 caracteres.', this.erroSenha, element, true)
 
-                }else{
-    
-                    element.parentElement.style.border = 'none';
-    
-                };
+                        }else if(element.value.length > 20){
 
-                if(this.password.value.length <= 20 && this.password.value.length >= 8){
+                            this.tratandoErro('No maximo 20.', this.erroSenha, element, true)
 
-                    element.parentElement.style.border = 'none';
+                        }else{
+                            
+                            this.tratandoErro(undefined, this.erroSenha, element, false)
+                        
+                        }
+                        break;
 
-                }else{
-    
-                    element.parentElement.style.border = '2px solid red';
-    
-                };
+                }
     
             });
-
         });
+    }
 
+    tratandoErro(mensagem='', span='', tag='', booleano){
+
+        if(booleano == true){
+
+            span.innerHTML = mensagem
+            tag.parentElement.style.border = '2px solid red';
+
+        }else if(booleano == false){
+
+            span.innerHTML = ''
+            tag.parentElement.style.border = 'none';
+
+        }
+        
 
     }
 

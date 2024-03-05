@@ -16,8 +16,6 @@ body{
 
 strong{
 
-    font-size: 1.5em;
-
     font-size: 2.7vw;
     font-weight: 600;
     text-align: center;
@@ -44,4 +42,15 @@ input[type='submit']{
     height: 3.5vw;
     width: 14vw;
 
+}
+
+/* span de erro */
+
+.error{
+    
+    color: #d70404;
+    margin: 0 0 6px 0;
+    position: relative;
+    font-size: 0.8em;
+    
 }

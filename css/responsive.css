@@ -1,12 +1,63 @@
 @media screen and (max-width: 841px){
 
+    /* Botões */
+    button,
+    input[type='submit']{font-size: 2vw;}
+
+    /* Caixa principal */
     #topBox{
 
         flex-direction: column;
-        height: 71vw;
+        height: 75vw;
 
     }
 
+    strong {font-size: 3.6vw;}
+
+    p{font-size: 1.6vw;}
+
+    /* Caixa dois */
+
+    #internalBoxTwo {padding: 20px 0;}
+
+    /* Tamanho do input */
     .inputBox input {width: 42vw;}
     
+}
+
+@media screen and (max-width: 561px){
+
+    /* Caixa principal */
+    #topBox {height: 111vw;}
+
+    /* Botão de mídia social */
+    #socialMediaButtons button {
+
+        height: 27px;
+        width: 27px;
+
+    }
+
+    span{font-size: 3vw;}
+
+}
+
+@media screen and (max-width: 331px){
+
+    /* Caixa principal */
+    #topBox {height: 138vw;}
+
+    /* Caixa um */
+    #internalBoxOne {padding: 15px 0;}
+
+    strong{font-size: 5vw;}
+    
+    p{font-size: 2vw;}
+
+    /* Caixa dois */
+
+    .inputBox img {width: 20px;}
+
+    span{font-size: 3.6vw;}
+
 }
