@@ -1,12 +1,14 @@
 :root {
 
-    --borda-caixa: #11116e;
-    --background-caixa-um: #d9d9d9;
-    --houver-caixa-um: #c3c2c2;
-    --background-caixa-dois: #fff;
+    --borda-caixa: #707070;
+    --background-caixa-um: #18181cbf;
+    --houver-caixa-um: #18181cf0;
+    --texto-caixa-um: #d7d7d7;
+    --background-caixa-dois: #abaaaae0;
     --botao: #11116e;
     --hover-botao: rgb(76, 76, 218);
-    --borda-botao: #fff;
+    --border-botao-social: #11116e;
+    --borda-botao: #ffffff;
     --Background-caixa-input: #d9d9d9;
 }
 
@@ -48,6 +50,7 @@
 #internalBoxOne{
 
     background: var(--background-caixa-um);
+    color: var(--texto-caixa-um);
     height: 100%;
     width: 100%;
 
@@ -61,11 +64,11 @@
 #internalBoxTwo{background: var(--background-caixa-dois);}
 
 /* Caixa de redes sociais */
-#socialMediaButtons{margin: 1vw 0;}
+/*#socialMediaButtons{margin: 1vw 0;}*/
 #socialMediaButtons button{
 
     background: transparent;
-    border: 2px solid var(--borda-caixa);
+    border: 2px solid var(--border-botao-social);
     border-radius: 20px;
     height: 35px;
     padding: 0;
@@ -74,7 +77,7 @@
 }
 #socialMediaButtons button img{vertical-align: middle;}
 
-span{margin-bottom: 1vw;}
+span{font-size: 13px;}
 
 /* formulário */
 form{
@@ -105,7 +108,7 @@ form{
 }
 
 /* Botão enviar */
-input[type='submit']{margin-top: 1vw;}
+/*input[type='submit']{margin-top: 1vw;}*/
 
 #internalBoxOne button:hover,
 input[type='submit']:hover{

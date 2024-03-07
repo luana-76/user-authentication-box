@@ -1,3 +1,9 @@
+@media screen and (max-width: 1090px){
+
+    /* Caixa principal */
+    #topBox {height: 47vw;}
+
+}
 @media screen and (max-width: 841px){
 
     /* Botões */
@@ -8,7 +14,7 @@
     #topBox{
 
         flex-direction: column;
-        height: 75vw;
+        height: 91vw;
 
     }
 
@@ -28,7 +34,7 @@
 @media screen and (max-width: 561px){
 
     /* Caixa principal */
-    #topBox {height: 111vw;}
+    #topBox {height: 130vw;}
 
     /* Botão de mídia social */
     #socialMediaButtons button {
@@ -45,7 +51,7 @@
 @media screen and (max-width: 331px){
 
     /* Caixa principal */
-    #topBox {height: 138vw;}
+    #topBox {height: 145vw;}
 
     /* Caixa um */
     #internalBoxOne {padding: 15px 0;}

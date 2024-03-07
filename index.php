@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="./css/reset.css"/>
     <link rel="stylesheet" href="./css/index.css"/>
     <link rel="stylesheet" href="./css/responsive.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -80,7 +83,7 @@
     
                         <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/000000/user.png" alt="user"/>
 
-                        <input type='text' name='name' pattern="/^[A-Za-z\s]+$/" placeholder="Name"/>
+                        <input type='text' name='name' required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Name"/>
     
                     </div>
                     <span class='error' id='nameError'></span><!-- Exibirá erros aqui-->
@@ -90,7 +93,7 @@
     
                         <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/000000/new-post.png" alt="new-post"/>
 
-                        <input type='email' name='email' required pattern='^[a-zA-Z0-9_]+@[a-zA-Z]+\.[a-zA-Z]{2,}$' placeholder="Email"/>
+                        <input type='email' name='email' required pattern='^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$' placeholder="Email"/>
     
                     </div>
                     <span class='error' id='emailErro'></span><!-- Exibirá erros aqui-->
@@ -100,7 +103,7 @@
     
                         <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/000000/lock.png" alt="lock"/>
 
-                        <input type='password' pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$' name='password' required placeholder="Password"/>
+                        <input type='password' pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$' name='password' required placeholder="Password"/>
     
                     </div>
                     <span class='error' id='passwordErro'></span><!-- Exibirá erros aqui-->
