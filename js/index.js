@@ -15,44 +15,95 @@ class Acoes{
         this.formBox = document.querySelector('#internalBoxTwo');
         this.sectionIndication = document.querySelector('#formChangeButton');
 
-        this.erroEmail = document.querySelector('#emailErro');
-        this.erroNome = document.querySelector('#nameError')
-        this.erroSenha = document.querySelector('#passwordErro')
-
         this.changingForm();
-        this.errorHandling();
-        this.sendButton()
+        this.errorHandling(
+
+            document.querySelector('#nameError'),
+            document.querySelector('#emailErro'),
+            document.querySelector('#passwordErro')
+
+        );
+        this.sendButton();
 
     }
 
     //Controlando o botão enviar
     sendButton(){
 
-        let input = document.querySelectorAll('input');
-        
-        setInterval(e=>{
+        let submitButton = document.querySelector('input[type="submit"]');
+        let cont = 0
 
-            input.forEach(element => {
+        submitButton.addEventListener('click', e => {
 
-                //Quando o botão de envio for clicado, verifique se todos os campos foram preenchidos
-                input[3].addEventListener('click', e=>{
+            let inputFields = document.querySelectorAll('input:not([type="submit"])');
 
-                    if(element.value == '' && element.type != 'submit'){
+            inputFields.forEach(element => {
 
-                        element.parentElement.style.border = '2px solid red';
-                    
-                    }
+                if (element.value == '') {
 
-                })
+                    e.preventDefault();
+                    element.parentElement.style.border = '2px solid red';
+
+                }
+
+                //Não envia o formulário não preenchido
+                this.validacaoDeEnvio(inputFields);
 
             });
 
-        }, 1000)
 
+        });
+
+        
+    }
+
+    //Só irá enviar quando todos os campos estiverem preenchidos
+    validacaoDeEnvio(inputFields){
+
+        if(document.querySelector('.standard strong').innerHTML == 'Welcome Back!'){
+            
+            if(!inputFields[0].validity.patternMismatch && !inputFields[0].validity.valueMissing){
+
+                if(!inputFields[1].validity.patternMismatch && !inputFields[1].validity.valueMissing){
+
+                    if(!inputFields[2].validity.patternMismatch && !inputFields[2].validity.valueMissing){
+
+                        window.location.href = this.action;
+
+                    }
+
+                }
+
+            }
+
+        }else{
+
+            if(!inputFields[0].validity.patternMismatch && !inputFields[0].validity.valueMissing){
+
+                if(!inputFields[1].validity.valueMissing){
+
+                    window.location.href = this.action;
+
+                }
+
+            }
+
+        }
 
     }
 
-    errorHandling(){
+    //Botão de enviar bloqueado caso erro em campos de formulário
+    bloqueandoSubmit(){
+
+        document.querySelector('input[type="submit"]').addEventListener('click', e=>{
+
+            e.preventDefault();
+
+        })
+
+    }
+
+    errorHandling(erroNome, erroEmail, erroSenha){
 
         //Tirando o input do botão
         let input = [...document.querySelectorAll('input')]
@@ -80,18 +131,20 @@ class Acoes{
                         //Caso o campo seja vazio
                         if(element.validity.valueMissing){
 
-                            this.errorStyling('Preencha o campo.', this.erroNome, element, true)
+                            this.bloqueandoSubmit();
+                            this.errorStyling('Preencha o campo.', erroNome, element, true)
 
                         }else{
                             
-                            this.errorStyling(undefined, this.erroNome, element, false)
+                            this.errorStyling(undefined, erroNome, element, false)
 
                         };
 
                         //Caso o campo não esteja de acordo com o pattern
-                        if (element.validity.patternMismatch) {
+                        if (element.validity.patternMismatch){
 
-                            this.errorStyling('Preencha apenas com letras.', this.erroNome, element, true)
+                            this.bloqueandoSubmit()
+                            this.errorStyling('Preencha apenas com letras.', erroNome, element, true)
 
                         }
                         break;
@@ -101,19 +154,22 @@ class Acoes{
                         //Caso o campo seja maior que 50
                         if(element.value.length > 50){
 
-                            this.errorStyling('O maixmo de caractere é 50.', this.erroEmail, element, true)
-
+                            this.bloqueandoSubmit();
+                            this.errorStyling('O maixmo de caractere é 50.', erroEmail, element, true)
+                            
                         }else if(element.validity.valueMissing){//Caso o campo seja vazio
-
-                            this.errorStyling('Preencha o campo.', this.erroEmail, element, true)
+                            
+                            this.bloqueandoSubmit();
+                            this.errorStyling('Preencha o campo.', erroEmail, element, true)
 
                         }else if(element.validity.patternMismatch){//Caso o campo não esteja de acordo com o pattern
 
-                            this.errorStyling('Utilize letras e numeros, _ e o tipo de email.', this.erroEmail, element, true)
+                            this.bloqueandoSubmit();
+                            this.errorStyling('Utilize letras e numeros, _ e o tipo de email.', erroEmail, element, true)
 
                         }else{
                             
-                            this.errorStyling(undefined, this.erroEmail, element, false)
+                            this.errorStyling(undefined, erroEmail, element, false)
                         
                         }
                         break;
@@ -122,26 +178,30 @@ class Acoes{
 
                         if(element.validity.valueMissing){//Caso o campo seja vazio
 
-                            this.errorStyling('Preencha o campo.', this.erroSenha, element, true)
-
+                            this.bloqueandoSubmit();
+                           this.errorStyling('Preencha o campo.', erroSenha, element, true);
+    
                         }else if(element.value.length < 8){//Caso o campo seja menor que 8
 
-                            this.errorStyling('No mínimo 8 caracteres.', this.erroSenha, element, true)
-
+                            this.bloqueandoSubmit();
+                            this.errorStyling('No mínimo 8 caracteres.', erroSenha, element, true)
+                            
                         }else if(element.value.length > 20){//Caso o campo seja maior que 20
 
-                            this.errorStyling('No máximo 20 caracteres.', this.erroSenha, element, true)
+                            this.bloqueandoSubmit();
+                            this.errorStyling('No máximo 20 caracteres.', erroSenha, element, true)
 
                         }else if(element.validity.patternMismatch){//Caso o campo não esteja de acordo com o pattern
 
+                            this.bloqueandoSubmit();
                             this.errorStyling(`- Letra minúscula<br/>
                                                 - Letra maiúscula<br/>
                                                 - Números<br/>
-                                                - Caracteres especiais`, this.erroSenha, element, true)
+                                                - Caracteres especiais`, erroSenha, element, true)
 
                         }else{
                             
-                            this.errorStyling(undefined, this.erroSenha, element, false)
+                            this.errorStyling(undefined, erroSenha, element, false)
                         
                         }
                         break;
@@ -155,6 +215,8 @@ class Acoes{
     //Estlização quando o campo dê erro 
     errorStyling(mensagem='', span='', tag='', booleano){
 
+        let submit = document.querySelector('input[type="submit"]');
+
         if(booleano == true){
 
             span.innerHTML = mensagem
@@ -166,16 +228,29 @@ class Acoes{
             tag.parentElement.style.border = 'none';
 
         }
+
+        if(!document.querySelector('input[type="submit"]')){
+
+            let form = document.querySelector('form');
+            let submitButton = document.createElement('input');
+
+            // Definir o tipo do input como submit
+            submitButton.type = 'submit';
+
+            // Definir o valor do input como "ENVIAR"
+            submitButton.value = 'ENVIAR';
+            form.appendChild(submitButton)
+
+        }
         
     }
-
 
     //Mudança de formulário
     changingForm(){
 
         //Quando clicar no botão sign in
         document.querySelector('#internalBoxOne button').addEventListener('click', e=>{
-            
+
             if(this.sectionChangeButton.value == 'sign in'){
 
                 //Mudança da caixa de seção
@@ -196,18 +271,22 @@ class Acoes{
                             <form action="php/acoesPhp.php" method="post">
                                 
                                 <div class='inputBox'>
-
+    
                                     <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/000000/new-post.png" alt="new-post"/>
+    
                                     <input type='email' name='email' required pattern='^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$' placeholder="Email"/>
-
+        
                                 </div>
+                                <span class='error' id='emailErro'></span>
 
                                 <div class='inputBox'>
-
+    
                                     <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/000000/lock.png" alt="lock"/>
-                                    <input type='password' pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$' name='password' required placeholder="Password"/>
 
+                                    <input type='password' name='password' required placeholder="Password"/>
+                
                                 </div>
+                                <span class='error' id='passwordErro'>
 
                                 <input type="submit" value="ENVIAR"/>
 
@@ -216,9 +295,17 @@ class Acoes{
                         </div>
                         
                         `;
+                        
+                        this.sectionChangeButton.value = 'login';
 
-
-                this.sectionChangeButton.value = 'login';
+                        this.errorHandling(
+                                
+                            undefined,
+                            document.querySelector('#emailErro'),
+                            document.querySelector('#passwordErro'),
+                                
+                        );
+                        this.sendButton()
 
             }else if(this.sectionChangeButton.value == 'login'){//Quando clicar no botão login
                 
@@ -263,35 +350,53 @@ class Acoes{
                         <span>or use your email for registration.</span>
 
                         <form action="php/acoesPhp.php" method="post">
-                        
-                            <div class='inputBox'>
 
+                            <!-- Caixa de estilização do input-->
+                            <div class='inputBox'>
+            
                                 <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/000000/user.png" alt="user"/>
-                                <input type='text' name='nome' placeholder="Name"/>
 
+                                <input type='text' name='name' required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Name"/>
+            
                             </div>
+                            <span class='error' id='nameError'></span><!-- Exibirá erros aqui-->
                             
+                            <!-- Caixa de estilização do input-->
                             <div class='inputBox'>
-
+            
                                 <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/000000/new-post.png" alt="new-post"/>
-                                <input type='email' name='email' placeholder="Email"/>
 
+                                <input type='email' name='email' required pattern='^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$' placeholder="Email"/>
+            
                             </div>
-
+                            <span class='error' id='emailErro'></span><!-- Exibirá erros aqui-->
+                            
+                            <!-- Caixa de estilização do input-->
                             <div class='inputBox'>
-
+            
                                 <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/000000/lock.png" alt="lock"/>
-                                <input type='password' name='senha' placeholder="Password"/>
 
+                                <input type='password' pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$' name='password' required placeholder="Password"/>
+            
                             </div>
+                            <span class='error' id='passwordErro'></span><!-- Exibirá erros aqui-->
 
                             <input type="submit" value="ENVIAR"/>
-
+                
                         </form>
 
                     </div>
                     
                     `;
+                
+                this.errorHandling(
+                        
+                        document.querySelector('#nameError'),
+                        document.querySelector('#emailErro'),
+                        document.querySelector('#passwordErro')
+            
+                );
+                this.sendButton();
             }
 
         })
