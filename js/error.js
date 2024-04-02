@@ -7,6 +7,38 @@ export class Error{
 
     }
 
+    //Estlização quando o campo dê erro 
+    errorStyling(mensagem='', span='', tag='', booleano){
+
+        if(booleano == true){
+
+            span.innerHTML = mensagem;
+            tag.parentElement.style.border = '2px solid red';
+
+        }else if(booleano == false){
+
+            span.innerHTML = '';
+            tag.parentElement.style.border = 'none';
+
+        };
+
+        //Se o submit sumir
+        if(!document.querySelector('input[type="submit"]')){
+
+            let form = document.querySelector('form');
+            let submit = document.createElement('input');//Criando input submit
+
+            // Definir o tipo do input como submit
+            submit.type = 'submit';
+
+            // Definir o valor do input como "ENVIAR"
+            submit.value = 'ENVIAR';
+            form.appendChild(submit);
+
+        };
+        
+    }
+    
     //Controlando o botão enviar
     sendButton(){
 
@@ -59,7 +91,7 @@ export class Error{
                 if(!inputFields[1].validity.valueMissing){
 
                     window.location.href = this.action;
-
+                    
                 };
 
             };
@@ -155,25 +187,37 @@ export class Error{
                         if(element.validity.valueMissing){//Caso o campo seja vazio
 
                             this.blockingSubmit();
-                           this.errorStyling('Preencha o campo.', erroSenha, element, true);
+                            this.errorStyling('Preencha o campo.', erroSenha, element, true);
     
                         }else if(element.value.length < 8){//Caso o campo seja menor que 8
 
-                            this.blockingSubmit();
-                            this.errorStyling('No mínimo 8 caracteres.', erroSenha, element, true);
-                            
+                            if(this.boxTitle.innerHTML == "Welcome Back!"){
+
+                                this.blockingSubmit();
+                                this.errorStyling('No mínimo 8 caracteres.', erroSenha, element, true);
+
+                            };
+
                         }else if(element.value.length > 20){//Caso o campo seja maior que 20
 
-                            this.blockingSubmit();
-                            this.errorStyling('No máximo 20 caracteres.', erroSenha, element, true);
+                            if(this.boxTitle.innerHTML == "Welcome Back!"){
+
+                                this.blockingSubmit();
+                                this.errorStyling('No máximo 20 caracteres.', erroSenha, element, true);
+
+                            };
 
                         }else if(element.validity.patternMismatch){//Caso o campo não esteja de acordo com o pattern
 
-                            this.blockingSubmit();
-                            this.errorStyling(`- Letra minúscula<br/>
-                                                - Letra maiúscula<br/>
-                                                - Números<br/>
-                                                - Caracteres especiais`, erroSenha, element, true);
+                            if(this.boxTitle.innerHTML == "Welcome Back!"){
+
+                                this.blockingSubmit();
+                                this.errorStyling(`- Letra minúscula<br/>
+                                                    - Letra maiúscula<br/>
+                                                    - Números<br/>
+                                                    - Caracteres especiais`, erroSenha, element, true);
+
+                            };
 
                         }else{
                             

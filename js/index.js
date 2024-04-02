@@ -1,4 +1,4 @@
-import { Error} from './erros.js';
+import { Error} from './error.js';
 
 class Acoes extends Error{
     
@@ -23,40 +23,8 @@ class Acoes extends Error{
 
         );
         this.sendButton();
-        this.backgroundChange();
+        //this.backgroundChange();
 
-    }
-   
-    //Estlização quando o campo dê erro 
-    errorStyling(mensagem='', span='', tag='', booleano){
-
-        if(booleano == true){
-
-            span.innerHTML = mensagem;
-            tag.parentElement.style.border = '2px solid red';
-
-        }else if(booleano == false){
-
-            span.innerHTML = '';
-            tag.parentElement.style.border = 'none';
-
-        };
-
-        //Se o submit sumir
-        if(!document.querySelector('input[type="submit"]')){
-
-            let form = document.querySelector('form');
-            let submit = document.createElement('input');
-
-            // Definir o tipo do input como submit
-            submit.type = 'submit';
-
-            // Definir o valor do input como "ENVIAR"
-            submit.value = 'ENVIAR';
-            form.appendChild(submit);
-
-        };
-        
     }
 
     //Mudança de formulário
@@ -82,7 +50,7 @@ class Acoes extends Error{
 
                             <span>or use your email for registration.</span>
 
-                            <form action="php/acoesPhp.php" method="post">
+                            <form action="php/login.php" method="post">
                                 
                                 <div class='inputBox'>
     
@@ -102,7 +70,7 @@ class Acoes extends Error{
                                 </div>
                                 <span class='error' id='passwordErro'>
 
-                                <input type="submit" value="ENVIAR"/>
+                                <input type="submit" name='login' value="ENVIAR"/>
 
                             </form>
 
@@ -138,24 +106,31 @@ class Acoes extends Error{
                     <div class="standard">
         
                         <strong>Create Account</strong>
-
+                    
+                        <!-- Caixa de redes de contato -->
                         <div id='socialMediaButtons'>
 
                             <button>
 
-                                <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/000000/facebook-f.png" alt="facebook-f"/>
+                                <a href=''>
+                                    <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/000000/facebook-f.png" alt="facebook-f"/>
+                                </a>
 
                             </button>
 
                             <button>
 
-                                <img width="20" height="20" src="https://img.icons8.com/windows/32/000000/google-plus.png" alt="google-plus"/>
+                                <a href=''>
+                                    <img width="20" height="20" src="https://img.icons8.com/windows/32/000000/google-plus.png" alt="google-plus"/>
+                                </a>
 
                             </button>
 
                             <button>
 
-                                <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2--v1.png" alt="linkedin-2--v1"/>
+                                <a href=''>
+                                    <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2--v1.png" alt="linkedin-2--v1"/>
+                                </a>
 
                             </button>
 
@@ -163,14 +138,14 @@ class Acoes extends Error{
 
                         <span>or use your email for registration.</span>
 
-                        <form action="php/acoesPhp.php" method="post">
+                        <form action="php/cadastro.php" method="post">
 
                             <!-- Caixa de estilização do input-->
                             <div class='inputBox'>
             
                                 <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/000000/user.png" alt="user"/>
 
-                                <input type='text' name='name' required pattern='^([a-zA-ZÀ-ÖØ-öø-ÿ]|\\s*$' placeholder="Name"/>
+                                <input type='text' name='name' required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\\s)*$" placeholder="Name"/>
             
                             </div>
                             <span class='error' id='nameError'></span><!-- Exibirá erros aqui-->
@@ -190,13 +165,13 @@ class Acoes extends Error{
             
                                 <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/000000/lock.png" alt="lock"/>
 
-                                <input type='password' pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$')[0-9a-zA-Z$*&@#]{8,}$' name='password' required placeholder="Password"/>
+                                <input type='password' pattern='^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$' name='password' required placeholder="Password"/>
             
                             </div>
                             <span class='error' id='passwordErro'></span><!-- Exibirá erros aqui-->
 
                             <input type="submit" value="ENVIAR"/>
-                
+            
                         </form>
 
                     </div>
@@ -221,7 +196,7 @@ class Acoes extends Error{
     //Mudança dos componentes da primeira caixa
     boxOneChanges(strong, p, button){
 
-        this.sectionIndication.querySelector('strong').innerHTML = strong;
+        this.boxTitle.innerHTML = strong;
         this.sectionIndication.querySelector('p').innerHTML = p;
         this.sectionChangeButton.innerHTML = button;
 
@@ -230,7 +205,7 @@ class Acoes extends Error{
     //Ação do botão de modo escuro
     backgroundChange(){
 
-        document.querySelector('#lightingButton').addEventListener('click', e=>{
+        this.sunBox.addEventListener('click', e=>{
 
             let background = window.getComputedStyle(this.body).backgroundImage;
 
@@ -245,6 +220,7 @@ class Acoes extends Error{
                 this.secondBox.style.transition = 'background 0.9s ease';
 
                 this.sunIcon('ffffff');
+
                 this.socialMediaButton(true);
 
             }else{
@@ -257,6 +233,7 @@ class Acoes extends Error{
                 this.secondBox.style.transition = 'background 0.9s ease';
 
                 this.sunIcon('DDDE');
+
                 this.socialMediaButton(false);
 
             };
@@ -265,67 +242,39 @@ class Acoes extends Error{
 
     }
 
+    //Dando problema
+
     //Mudando borda de botões de mídia social
     socialMediaButton(booleano){
 
         //Melhorar essa parte
+
+        let imagens = this.socialBox.querySelectorAll('img');
+    
         if(booleano){
 
-            this.socialBox.innerHTML = `
-                            <button style='border: 2px solid #fff;'>
+            imagens[0].src = 'https://img.icons8.com/ios-glyphs/30/ffffff/facebook-f.png';
+            imagens[1].src = 'https://img.icons8.com/windows/32/ffffff/google-plus.png';
+            imagens[2].src = 'https://img.icons8.com/ios-glyphs/30/ffffff/linkedin-2--v1.png';
+    
+            imagens.forEach(element => {
+                
+                element.parentElement.parentElement.style.border = '2px solid #fff';
 
-                                    <a href=''>
-                                            <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/ffffff/facebook-f.png" alt="facebook-f"/>
-                                    </a>
+            });
 
-                            </button>
-
-                            <button style='border: 2px solid #fff;'>
-
-                                <a href=''>
-                                    <img width="20" height="20" src="https://img.icons8.com/windows/32/ffffff/google-plus.png" alt="google-plus"/>
-                                </a>
-
-                            </button>
-
-                            <button style='border: 2px solid #fff;'>
-
-                                <a href=''>
-                                    <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/ffffff/linkedin-2--v1.png" alt="linkedin-2--v1"/>
-                                </a>
-
-                            </button>
-        
-                        `;
+            
         }else{
 
-            this.socialBox.innerHTML = `
+            imagens[0].src = 'https://img.icons8.com/ios-glyphs/30/000000/facebook-f.png';
+            imagens[1].src = 'https://img.icons8.com/windows/32/000000/google-plus.png';
+            imagens[2].src = 'https://img.icons8.com/ios-glyphs/30/000000/linkedin-2--v1.png';
 
-                <button>
+            imagens.forEach(element => {
+                
+                element.parentElement.parentElement.style.border = '2px solid #11116e';
 
-                    <a href=''>
-                        <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/000000/facebook-f.png" alt="facebook-f"/>
-                    </a>
-
-                </button>
-
-                <button>
-
-                    <a href=''>
-                        <img width="20" height="20" src="https://img.icons8.com/windows/32/000000/google-plus.png" alt="google-plus"/>
-                    </a>
-
-                </button>
-
-                <button>
-
-                    <a href=''>
-                        <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2--v1.png" alt="linkedin-2--v1"/>
-                    </a>
-
-                </button>
-            
-            `;
+            });
 
         };
 

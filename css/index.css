@@ -1,10 +1,10 @@
 :root {
 
     --borda-caixa: #707070;
-    --background-caixa-um: #18181cbf;
-    --houver-caixa-um: #18181cf0;
-    --texto-caixa-um: #d7d7d7;
-    --background-caixa-dois: #abaaaae0;
+    --background-caixa-um: #e6daa8;
+    --houver-caixa-um: #c1b481;
+    --texto-caixa-um: #000;
+    --background-caixa-dois: #fff;
     --botao: #11116e;
     --hover-botao: rgb(76, 76, 218);
     --border-botao-social: #11116e;
@@ -27,7 +27,7 @@
 /* Caixa principal */
 #topBox{
 
-    border: 2px solid var(--borda-caixa);
+    /*border: 2px solid var(--borda-caixa);*/
     display: flex;
     justify-content: space-evenly;
     height: 40vw;
@@ -116,5 +116,42 @@ input[type='submit']:hover{
     transition: background 1s;
     background: var(--hover-botao);
     border: 2px solid var(--borda-botao);
+
+}
+
+/** Parte das caixas do php **/
+
+#bodyPhp{
+
+    align-items: center;
+    background:#fff;
+    display: flex;
+    justify-content: center;
+
+}
+
+#minBox{
+
+    align-items: center;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    height: 200px;
+    justify-content: center;
+    width: 30vw;
+
+}
+
+#minBox button{
+
+    background: #11116e;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    outline: none;
+    padding: 10px;
+    width:10vw;
 
 }

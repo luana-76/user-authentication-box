@@ -76,7 +76,7 @@
 
                 <span>or use your email for registration.</span>
 
-                <form action="php/acoesPhp.php" method="post">
+                <form action="php/cadastro.php" method="post">
 
                     <!-- Caixa de estilização do input-->
                     <div class='inputBox'>
@@ -108,7 +108,7 @@
                     </div>
                     <span class='error' id='passwordErro'></span><!-- Exibirá erros aqui-->
 
-                    <input type="submit" value="ENVIAR"/>
+                    <input type="submit" name='cadastro' value="ENVIAR"/>
         
                 </form>
 
