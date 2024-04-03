@@ -35,4 +35,5 @@ class Initialization{
         $this->senha = $_POST['password'];
 
     }
+
 }

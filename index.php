@@ -13,13 +13,6 @@
 </head>
 <body>
 
-    <!-- Botão de modo nortuno -->
-    <div id="lightingButton">
-
-        <img width="20" height="20" src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-sun-summer-tanah-basah-glyph-tanah-basah.png" alt="external-sun-summer-tanah-basah-glyph-tanah-basah"/>
-
-    </div>
-
     <!-- Caixa principal onde vai segurar a caixa de login e cadastro -->
     <div id="topBox">
         
@@ -119,5 +112,6 @@
     </div>
 
     <script type="module" src='./js/index.js'></script>
+    
 </body>
 </html>

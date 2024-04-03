@@ -78,10 +78,6 @@ class LigacaoBancoDeDados extends Initialization{
                 HTML;
                 echo $html;
 
-            } else {
-
-                echo "Erro ao inserir dados: " . $this->conn->error;
-                            
             }
 
         }
